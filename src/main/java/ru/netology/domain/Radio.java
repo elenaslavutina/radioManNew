@@ -5,7 +5,7 @@ public class Radio {
     private int maxChanel = 9;
     private int minChanel = 0;
     private int currentChanel;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private int currentVolume;
     private boolean on;
@@ -96,4 +96,9 @@ public class Radio {
     public void setOn(boolean on) {
         this.on = on;
     }
-}
+
+    public void setMaxChanel(int maxChanel) {
+        this.maxChanel = maxChanel;
+    }
+
+    }
