@@ -9,60 +9,50 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Radio {
     private String name;
-    private int maxChanel = 9;
-    private int minChanel = 0;
-    private int currentChanel;
+    private int maxChannel = 9;
+    private int minChannel = 0;
+    private int currentChannel;
     private int maxVolume = 100;
     private int minVolume = 0;
     private int currentVolume;
     private boolean on;
 
-
-    public void setCurrentChanel(int currentChanel) {
-        if (currentChanel < minChanel)
+    public void newChannel(int current) {
+        if ((current < minChannel) | (current > maxChannel))
             return;
-        if (currentChanel > maxChanel)
+        currentChannel = current;
+    }
+
+    public void newVolume(int current) {
+        if ((current < minVolume) | (current > maxVolume))
             return;
-        this.currentChanel = currentChanel;
+        currentVolume = current;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < minVolume)
+    public void nextChannel() {
+        if (currentChannel == maxChannel)
+            currentChannel = minChannel;
+        else
+            ++ currentChannel;
+    }
+
+    public void previousChannel() {
+        if (currentChannel == minChannel)
+            currentChannel = maxChannel;
+        else
+           -- currentChannel;
+    }
+
+    public void nextVolume() {
+        if (currentVolume == maxVolume)
             return;
-        if (currentVolume > maxVolume)
+        ++ currentVolume;
+    }
+
+    public void previousVolume() {
+        if (currentVolume == minVolume)
             return;
-        this.currentVolume = currentVolume;
+        -- currentVolume;
     }
 
-    public void increaseCurrentChanelByArrow() {
-        int current = currentChanel;
-        if (current == maxChanel) {
-            this.currentChanel = minChanel;
-        } else
-            this.currentChanel = current + 1;
-    }
-
-    public void decreaseCurrentChanelByArrow() {
-        int current = currentChanel;
-        if (current == minChanel) {
-            this.currentChanel = maxChanel;
-        } else
-            this.currentChanel = current - 1;
-    }
-
-    public void increaseCurrentVolumeByArrow() {
-        int volume = currentVolume;
-        if (volume == maxVolume)
-            return;
-        this.currentVolume = volume + 1;
-    }
-
-    public void decreaseCurrentVolumeByArrow() {
-        int volume = currentVolume;
-        if (volume == minVolume)
-            return;
-        this.currentVolume = volume - 1;
-    }
-
-
-    }
+}
