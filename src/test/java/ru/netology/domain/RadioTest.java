@@ -18,37 +18,6 @@ class RadioTest {
     }
 
     @Test
-    public void shouldSetMaxchannel() {
-        int max = 20;
-        radioStation.setMaxChannel(max);
-        assertEquals(max, radioStation.getMaxChannel());
-    }
-
-    @Test
-    public void shouldGetMinChannel() {
-        int min = radioStation.getMinChannel();
-        assertEquals(min, radioStation.getMinChannel());
-    }
-
-    @Test
-    public void shouldGetMaxChannel() {
-        int max = radioStation.getMaxChannel();
-        assertEquals(max, radioStation.getMaxChannel());
-    }
-
-    @Test
-    public void shouldGetMinVolume() {
-        int min = radioStation.getMinVolume();
-        assertEquals(min, radioStation.getMinVolume());
-    }
-
-    @Test
-    public void shouldGetmaxVolume() {
-        int max = radioStation.getMaxVolume();
-        assertEquals(max, radioStation.getMaxVolume());
-    }
-
-    @Test
     public void shouldChangeCurrentChannel() {
         int current = 6;
         radioStation.newChannel(current);
