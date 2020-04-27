@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
-    Radio radioStation = new Radio();
+   private Radio radioStation = new Radio();
 
     @Test
     public void shouldCreateName() {
@@ -20,21 +20,21 @@ class RadioTest {
     @Test
     public void shouldChangeCurrentChannel() {
         int current = 6;
-        radioStation.newChannel(current);
+        radioStation.setChannel(current);
         assertEquals(current, radioStation.getCurrentChannel());
     }
 
     @Test
     public void shouldChangeCurrentChannelOnUpperBounder() {
         int max = radioStation.getMaxChannel();
-        radioStation.newChannel(max);
+        radioStation.setChannel(max);
         assertEquals(max, radioStation.getCurrentChannel());
     }
 
     @Test
     public void shouldChangeCurrentChannelOnBottomBouner() {
         int min = radioStation.getMinChannel();
-        radioStation.newChannel(min);
+        radioStation.setChannel(min);
         assertEquals(min, radioStation.getCurrentChannel());
     }
 
@@ -42,7 +42,7 @@ class RadioTest {
     public void shouldNotChangeCurrentChannelUpperMax() {
         int max = radioStation.getMaxChannel();
         int current = radioStation.getCurrentChannel();
-        radioStation.newChannel((max + 10));
+        radioStation.setChannel((max + 10));
         assertEquals(current, radioStation.getCurrentChannel());
     }
 
@@ -50,28 +50,28 @@ class RadioTest {
     public void shouldNotChangeCurrentChannelUnderMin() {
         int min = radioStation.getMinChannel();
         int current = radioStation.getCurrentChannel();
-        radioStation.newChannel((min - 10));
+        radioStation.setChannel((min - 10));
         assertEquals(current, radioStation.getCurrentChannel());
     }
 
     @Test
     public void shouldChangeCurrentVolume() {
         int current = 7;
-        radioStation.newVolume(current);
+        radioStation.setVolume(current);
         assertEquals(current, radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldChangeCurrentVolumeOnUpperBounder() {
         int max = radioStation.getMaxVolume();
-        radioStation.newVolume(max);
+        radioStation.setVolume(max);
         assertEquals(max, radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldChangeCurrentVolumeOnBottomBounder() {
         int min = radioStation.getMinVolume();
-        radioStation.newVolume(min);
+        radioStation.setVolume(min);
         assertEquals(min, radioStation.getCurrentVolume());
     }
 
@@ -79,21 +79,21 @@ class RadioTest {
     public void shouldNotChangeCurrentVolumeUpperMax() {
         int current = radioStation.getCurrentVolume();
         int max = radioStation.getMaxVolume();
-        radioStation.newVolume((max + 10));
+        radioStation.setVolume((max + 10));
         assertEquals(current, radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldNotChangeCurrentVolumeUnderMin() {
         int min = radioStation.getMinVolume();
-        radioStation.newVolume((min - 10));
+        radioStation.setVolume((min - 10));
         assertEquals(min, radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldChangeChannelToNext() {
         int current = 6;
-        radioStation.newChannel(current);
+        radioStation.setChannel(current);
         radioStation.nextChannel();
         assertEquals((current + 1), radioStation.getCurrentChannel());
     }
@@ -101,7 +101,7 @@ class RadioTest {
     @Test
     public void shouldChangeChannelToPrevious() {
         int current = 6;
-        radioStation.newChannel(current);
+        radioStation.setChannel(current);
         radioStation.previousChannel();
         assertEquals((current - 1), radioStation.getCurrentChannel());
     }
@@ -110,7 +110,7 @@ class RadioTest {
     public void shouldReassignedCurrentChannelDown() {
         int max = radioStation.getMaxChannel();
         int min = radioStation.getMinChannel();
-        radioStation.newChannel(max);
+        radioStation.setChannel(max);
         radioStation.nextChannel();
         assertEquals(min, radioStation.getCurrentChannel());
     }
@@ -119,7 +119,7 @@ class RadioTest {
     public void shouldReassignedCurrentChannelUp() {
         int min = radioStation.getMinChannel();
         int max = radioStation.getMaxChannel();
-        radioStation.newChannel(min);
+        radioStation.setChannel(min);
         radioStation.previousChannel();
         assertEquals(max, radioStation.getCurrentChannel());
     }
@@ -127,7 +127,7 @@ class RadioTest {
     @Test
     public void shouldChangeVolumeToNext() {
         int current = 6;
-        radioStation.newVolume(current);
+        radioStation.setVolume(current);
         radioStation.nextVolume();
         assertEquals((current + 1), radioStation.getCurrentVolume());
     }
@@ -135,21 +135,21 @@ class RadioTest {
     @Test
     public void shouldChangeVolumeToPrevious() {
         int current = 6;
-        radioStation.newVolume(current);
+        radioStation.setVolume(current);
         radioStation.previousVolume();
         assertEquals((current - 1), radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldNotIncreaseCurrentVolumeWhenMax() {
-        radioStation.newVolume(radioStation.getMaxVolume());
+        radioStation.setVolume(radioStation.getMaxVolume());
         radioStation.nextVolume();
         assertEquals(radioStation.getMaxVolume(), radioStation.getCurrentVolume());
     }
 
     @Test
     public void shouldNotDecreaseCurrentVolumeWhenMin() {
-        radioStation.newVolume(radioStation.getMinVolume());
+        radioStation.setVolume(radioStation.getMinVolume());
         radioStation.previousVolume();
         assertEquals(radioStation.getMinVolume(), radioStation.getCurrentVolume());
 

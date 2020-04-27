@@ -17,16 +17,16 @@ public class Radio {
     private int currentVolume;
     private boolean on;
 
-    public void newChannel(int current) {
-        if ((current < minChannel) | (current > maxChannel))
+    public void setChannel(int newChannel) {
+        if ((newChannel < minChannel) | (newChannel > maxChannel))
             return;
-        currentChannel = current;
+        currentChannel = newChannel;
     }
 
-    public void newVolume(int current) {
-        if ((current < minVolume) | (current > maxVolume))
+    public void  setVolume(int newVolume) {
+        if ((newVolume < minVolume) | (newVolume > maxVolume))
             return;
-        currentVolume = current;
+        currentVolume = newVolume;
     }
 
     public void nextChannel() {
